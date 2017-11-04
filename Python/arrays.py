@@ -1,11 +1,15 @@
 import random
 
 
-def generate_byte_array(length):
-    """Generates a byte array of array_length elements with 8 random bits"""
-    return bytearray(random.getrandbits(8) for _ in range(length))
+def random_array(width, length):
+    """Random data array."""
+    return [random.getrandbits(width) for _ in range(length)]
 
 
-def generate_hex_array(width, length):
-    """Generates array with hex values in string format"""
-    return [hex(random.getrandbits(width)) for _ in range(length)]
+def random_number(width, length):
+    """Generator."""
+    for _ in range(length):
+        yield random.getrandbits(width)
+
+
+print(", ".join(["{0:#0{1}x}".format(val, 4) for val in random_number(8, 16)]))
